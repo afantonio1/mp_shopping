@@ -1,5 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using MpShopping.ProductAPI.Config;
 using MpShopping.ProductAPI.Model.Context;
+using MpShopping.Web.Models.Interfaces;
+using MpShopping.ProductAPI.Model.Repositories;
 
 namespace MpShopping.ProductAPI
 {
@@ -17,9 +22,20 @@ namespace MpShopping.ProductAPI
             services.AddDbContext<MySQLContext>(options => options
                     .UseMySql(connection, new MySqlServerVersion(new Version(8, 0, 32))));
 
+            //AutoMapper
+            IMapper mapper = MappingConfig.RegisterMap().CreateMapper(); ;
+            services.AddSingleton(mapper);
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //Repositores
+            services.AddScoped<IProductRepository, ProductRepository>();
+
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen( c =>
+            {
+                c.SwaggerDoc("V1", new OpenApiInfo { Title = "My Shopping" });
+            });
 
         }
 
@@ -33,9 +49,7 @@ namespace MpShopping.ProductAPI
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthorization();
-
             app.MapControllers();
         }
     }
