@@ -32,10 +32,7 @@ namespace MpShopping.ProductAPI
 
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen( c =>
-            {
-                c.SwaggerDoc("V1", new OpenApiInfo { Title = "My Shopping" });
-            });
+            services.AddSwaggerGen();
 
         }
 

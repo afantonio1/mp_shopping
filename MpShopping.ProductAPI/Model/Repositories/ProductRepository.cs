@@ -25,7 +25,7 @@ namespace MpShopping.ProductAPI.Model.Repositories
 
         public async Task<ProductDTO> FindById(long id)
         {
-            var product = await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+            var product = await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync() ?? new Product();
             return _mapper.Map<ProductDTO>(product);
         }
 
@@ -40,7 +40,7 @@ namespace MpShopping.ProductAPI.Model.Repositories
         public async Task<ProductDTO> Update(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
-            _context.Products.Add(product);
+            _context.Products.Update(product);
             await _context.SaveChangesAsync();
             return _mapper.Map<ProductDTO>(product);
         }
@@ -49,10 +49,9 @@ namespace MpShopping.ProductAPI.Model.Repositories
         {
             try
             {
-                var product = await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync();
+                var product = await _context.Products.Where(p => p.Id == id).FirstOrDefaultAsync() ?? new Product();
 
-                if (product == null)
-                    return false;
+                if (product.Id <= 0) return false;
 
                 _context.Products.Remove(product);
                 await _context.SaveChangesAsync();
