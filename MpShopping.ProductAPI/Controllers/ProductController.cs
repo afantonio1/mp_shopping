@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MpShopping.Web.Models.Data.Dto;
 using MpShopping.Web.Models.Interfaces;
 
@@ -33,7 +32,7 @@ namespace MpShopping.ProductAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductDTO>> Create(ProductDTO productDto)
+        public async Task<ActionResult<ProductDTO>> Create([FromBody] ProductDTO productDto)
         {
             if (productDto == null) return BadRequest();
             var product = await _productRepository.Create(productDto);
@@ -41,7 +40,7 @@ namespace MpShopping.ProductAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<ProductDTO>> Update(ProductDTO productDto)
+        public async Task<ActionResult<ProductDTO>> Update([FromBody] ProductDTO productDto)
         {
             if (productDto == null) return BadRequest();
             var product = await _productRepository.Update(productDto);

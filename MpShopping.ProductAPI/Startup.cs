@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using MpShopping.ProductAPI.Config;
-using MpShopping.ProductAPI.Model.Context;
 using MpShopping.Web.Models.Interfaces;
+using MpShopping.ProductAPI.Model.Context;
 using MpShopping.ProductAPI.Model.Repositories;
 
 namespace MpShopping.ProductAPI
