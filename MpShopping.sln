@@ -7,9 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{17
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{B9B94685-8A2F-4B28-AEAF-7CD5447AEFE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpShopping.Web", "MpShopping.Web\MpShopping.Web.csproj", "{6C3FE8B7-DE4E-4F23-9C8E-5127D100CD04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MpShopping.Web", "MpShopping.Web\MpShopping.Web.csproj", "{6C3FE8B7-DE4E-4F23-9C8E-5127D100CD04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpShopping.ProductAPI", "MpShopping.ProductAPI\MpShopping.ProductAPI.csproj", "{652472ED-7489-4607-9E51-EDF78CDC6667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MpShopping.ProductAPI", "MpShopping.ProductAPI\MpShopping.ProductAPI.csproj", "{652472ED-7489-4607-9E51-EDF78CDC6667}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MpShopping.IdentityServer", "MpShopping.IdentityServer\MpShopping.IdentityServer.csproj", "{E85616AB-A01E-4EA6-8AA9-48FECF80F404}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{652472ED-7489-4607-9E51-EDF78CDC6667}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{652472ED-7489-4607-9E51-EDF78CDC6667}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{652472ED-7489-4607-9E51-EDF78CDC6667}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E85616AB-A01E-4EA6-8AA9-48FECF80F404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E85616AB-A01E-4EA6-8AA9-48FECF80F404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E85616AB-A01E-4EA6-8AA9-48FECF80F404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E85616AB-A01E-4EA6-8AA9-48FECF80F404}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6C3FE8B7-DE4E-4F23-9C8E-5127D100CD04} = {1752400F-83BC-4FBD-8844-EDB95293EE70}
 		{652472ED-7489-4607-9E51-EDF78CDC6667} = {B9B94685-8A2F-4B28-AEAF-7CD5447AEFE6}
+		{E85616AB-A01E-4EA6-8AA9-48FECF80F404} = {B9B94685-8A2F-4B28-AEAF-7CD5447AEFE6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9261E395-E8B4-4E7E-92E8-3D34BD3A385D}
