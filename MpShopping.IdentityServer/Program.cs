@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MpShopping.IdentityServer.Initializer;
 using MpShopping.IdentityServer.Configuration;
 using MpShopping.IdentityServer.Model.Context;
 
@@ -29,7 +30,11 @@ var identityServer = builder.Services.AddIdentityServer(options =>
   .AddInMemoryClients(IdentityConfiguration.Clients)
   .AddAspNetIdentity<ApplicationUser>();
 
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 identityServer.AddDeveloperSigningCredential();
+
+var initializer = builder.Services?.BuildServiceProvider().GetService<IDbInitializer>();
+
 
 var app = builder.Build();
 
@@ -44,6 +49,8 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
+
+initializer?.Initialize();
 
 app.MapControllerRoute(
     name: "default",
