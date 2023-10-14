@@ -9,8 +9,8 @@ namespace MpShopping.IdentityServer.Initializer
     public class DbInitializer : IDbInitializer
     {
         private readonly MySQLDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _role;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public DbInitializer(MySQLDbContext context,
                              RoleManager<IdentityRole> role,
@@ -28,9 +28,9 @@ namespace MpShopping.IdentityServer.Initializer
             _role.CreateAsync(new IdentityRole(IdentityConfiguration.Admin)).GetAwaiter().GetResult();
             _role.CreateAsync(new IdentityRole(IdentityConfiguration.Client)).GetAwaiter().GetResult();
 
-            ApplicationUser admin = new ApplicationUser()
+            var admin = new ApplicationUser()
             {
-                UserName = "Alessandro Admin",
+                UserName = "alessandro-admin",
                 Email = "alessandroadmin@micropont.com.br",
                 EmailConfirmed = true,
                 PhoneNumber = "+55 (31) 98412-0000",
@@ -38,8 +38,8 @@ namespace MpShopping.IdentityServer.Initializer
                 LastName = "Admin"
             };
 
-            _userManager.CreateAsync(admin, "Mpshopping$123").GetAwaiter().GetResult();
-            _userManager.AddToRoleAsync(admin, IdentityConfiguration.Admin).GetAwaiter().GetResult();
+            var user = _userManager.CreateAsync(admin, "Mpshopping$123").GetAwaiter().GetResult();
+            var userRoles = _userManager.AddToRoleAsync(admin, IdentityConfiguration.Admin).GetAwaiter().GetResult();
 
             var adminClaims = _userManager.AddClaimsAsync(admin, new Claim[]
             {
@@ -51,7 +51,7 @@ namespace MpShopping.IdentityServer.Initializer
 
             ApplicationUser client = new ApplicationUser()
             {
-                UserName = "Alessandro client",
+                UserName = "alessandro-client",
                 Email = "alessandroclient@micropont.com.br",
                 EmailConfirmed = true,
                 PhoneNumber = "+55 (31) 98412-0000",

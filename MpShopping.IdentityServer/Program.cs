@@ -31,10 +31,9 @@ var identityServer = builder.Services.AddIdentityServer(options =>
   .AddAspNetIdentity<ApplicationUser>();
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-identityServer.AddDeveloperSigningCredential();
-
 var initializer = builder.Services?.BuildServiceProvider().GetService<IDbInitializer>();
 
+identityServer.AddDeveloperSigningCredential();
 
 var app = builder.Build();
 

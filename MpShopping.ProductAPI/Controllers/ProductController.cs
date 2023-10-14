@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MpShopping.ProductAPI.Utils;
 using MpShopping.Web.Models.Data.Dto;
 using MpShopping.Web.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MpShopping.ProductAPI.Controllers
 {
@@ -16,12 +18,14 @@ namespace MpShopping.ProductAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<ProductDTO>>> FindAll()
         {
             var products = await _productRepository.FindAll();
             return Ok(products);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDTO>> FindById(long id)
         {
@@ -32,6 +36,7 @@ namespace MpShopping.ProductAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<ActionResult<ProductDTO>> Create([FromBody] ProductDTO productDto)
         {
             if (productDto == null) return BadRequest();
@@ -40,6 +45,7 @@ namespace MpShopping.ProductAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public async Task<ActionResult<ProductDTO>> Update([FromBody] ProductDTO productDto)
         {
             if (productDto == null) return BadRequest();
@@ -48,6 +54,7 @@ namespace MpShopping.ProductAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = Role.Admin)]
         public async Task<ActionResult> Delete(long id)
         {
             var status = await _productRepository.Delete(id);
