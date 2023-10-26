@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using MpShopping.IdentityServer.Initializer;
 using MpShopping.IdentityServer.Configuration;
 using MpShopping.IdentityServer.Model.Context;
+using Duende.IdentityServer.Services;
+using MpShopping.IdentityServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,11 +33,13 @@ var identityServer = builder.Services.AddIdentityServer(options =>
   .AddAspNetIdentity<ApplicationUser>();
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-var initializer = builder.Services?.BuildServiceProvider().GetService<IDbInitializer>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 identityServer.AddDeveloperSigningCredential();
 
 var app = builder.Build();
+
+var initializer = app.Services.CreateScope().ServiceProvider.GetService<IDbInitializer>();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

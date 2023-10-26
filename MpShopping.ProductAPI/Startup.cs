@@ -33,7 +33,7 @@ namespace MpShopping.ProductAPI
 
             services.AddControllers();
             services.AddAuthentication("Bearer")
-                .AddJwtBearer(options =>
+                .AddJwtBearer("Bearer", options =>
                 {
                     options.Authority = "https://localhost:4435/";
                     options.TokenValidationParameters = new TokenValidationParameters
